@@ -2,11 +2,11 @@ import { Container, Nav, Navbar } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
 
 const navItems = [
-  { to: '/', label: 'Home', end: true },
-  { to: '/explore', label: 'Explore' },
-  { to: '/visualizer', label: 'Visualizer' },
-  { to: '/settings', label: 'Settings' },
-  { to: '/about', label: 'About' },
+  { to: '/', label: 'Home', end: true, enabled: true },
+  { to: '/explore', label: 'Explore', enabled: false },
+  { to: '/visualizer', label: 'Visualizer', enabled: true },
+  { to: '/settings', label: 'Settings', enabled: false },
+  { to: '/about', label: 'About', enabled: false },
 ]
 
 function AppNavbar() {
@@ -20,17 +20,23 @@ function AppNavbar() {
         <Navbar.Toggle aria-controls="main-nav" />
         <Navbar.Collapse id="main-nav">
           <Nav className="ms-auto">
-            {navItems.map((item) => (
-              <Nav.Link
-                key={item.to}
-                as={NavLink}
-                to={item.to}
-                end={item.end}
-                className={({ isActive }) => (isActive ? 'fw-semibold text-decoration-underline' : undefined)}
-              >
-                {item.label}
-              </Nav.Link>
-            ))}
+            {navItems.map((item) =>
+              item.enabled ? (
+                <Nav.Link
+                  key={item.to}
+                  as={NavLink}
+                  to={item.to}
+                  end={item.end}
+                  className={({ isActive }) => (isActive ? 'fw-semibold text-decoration-underline' : undefined)}
+                >
+                  {item.label}
+                </Nav.Link>
+              ) : (
+                <Nav.Link key={item.to} disabled aria-disabled="true" title="Planned for a later milestone">
+                  {item.label}
+                </Nav.Link>
+              ),
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
