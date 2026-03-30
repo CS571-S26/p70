@@ -2,12 +2,12 @@ import { Card } from 'react-bootstrap'
 
 function VisualizationCanvas() {
   return (
-    <Card className="h-100">
-      <Card.Body>
-        <Card.Title as="h2" className="h5">
+    <Card className="h-100 shadow-sm">
+      <Card.Body className="p-3 p-md-4">
+        <Card.Title as="h2" className="h5 mb-2">
           Visualization
         </Card.Title>
-        <Card.Text className="text-muted">
+        <Card.Text className="text-muted mb-3">
           This panel will display the dataset, model decision boundary, and training updates as you
           adjust controls. For now, the mock chart below shows where that interactive view will
           appear.

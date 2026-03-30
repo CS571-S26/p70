@@ -17,16 +17,16 @@ function ControlPanel({
   onReset = () => {},
 }) {
   return (
-    <Card>
-      <Card.Body>
-        <Card.Title as="h2" className="h5">Control Panel</Card.Title>
-        <Card.Text className="text-muted">
+    <Card className="shadow-sm h-100">
+      <Card.Body className="p-3 p-md-4">
+        <Card.Title as="h2" className="h5 mb-2">Control Panel</Card.Title>
+        <Card.Text className="text-muted mb-4">
           Adjust dataset and model settings to explore how the visualization changes.
         </Card.Text>
 
         <Form>
           <Form.Group className="mb-3" controlId="dataset-size">
-            <Form.Label>Dataset Size ({datasetSize})</Form.Label>
+            <Form.Label className="fw-semibold">Dataset Size ({datasetSize})</Form.Label>
             <Form.Range
               min={20}
               max={500}
@@ -37,7 +37,7 @@ function ControlPanel({
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="noise-level">
-            <Form.Label>Noise ({noise.toFixed(2)})</Form.Label>
+            <Form.Label className="fw-semibold">Noise ({noise.toFixed(2)})</Form.Label>
             <Form.Range
               min={0}
               max={1}
@@ -48,7 +48,7 @@ function ControlPanel({
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="model-selector">
-            <Form.Label>Model Selector</Form.Label>
+            <Form.Label className="fw-semibold">Model Selector</Form.Label>
             <Form.Select value={model} onChange={(event) => onModelChange(event.target.value)}>
               {modelOptions.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -58,7 +58,7 @@ function ControlPanel({
             </Form.Select>
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="show-overlay-toggle">
+          <Form.Group className="mb-4" controlId="show-overlay-toggle">
             <Form.Check
               type="switch"
               label="Show Overlay"
@@ -67,8 +67,8 @@ function ControlPanel({
             />
           </Form.Group>
 
-          <Button type="button" variant="outline-secondary" onClick={onReset}>
-            Reset
+          <Button type="button" variant="outline-secondary" className="w-100" onClick={onReset}>
+            Reset Controls
           </Button>
         </Form>
       </Card.Body>
