@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
+
 import PageLayout from './components/PageLayout'
 import HomePage from './pages/HomePage'
 import VisualizerPage from './pages/VisualizerPage'

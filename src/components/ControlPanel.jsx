@@ -1,5 +1,4 @@
-import Card from 'react-bootstrap/Card'
-import Form from 'react-bootstrap/Form'
+import { Card, Form } from 'react-bootstrap'
 
 function ControlPanel() {
   return (

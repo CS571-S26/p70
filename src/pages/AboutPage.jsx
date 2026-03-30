@@ -1,4 +1,5 @@
-import Card from 'react-bootstrap/Card'
+import { Card } from 'react-bootstrap'
+
 import PageLayout from '../components/PageLayout'
 
 function AboutPage() {

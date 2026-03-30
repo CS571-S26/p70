@@ -1,5 +1,5 @@
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
+import { Col, Row } from 'react-bootstrap'
+
 import ControlPanel from '../components/ControlPanel'
 import PageLayout from '../components/PageLayout'
 import VisualizationCanvas from '../components/VisualizationCanvas'

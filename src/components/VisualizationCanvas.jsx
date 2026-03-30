@@ -1,4 +1,4 @@
-import Card from 'react-bootstrap/Card'
+import { Card } from 'react-bootstrap'
 
 function VisualizationCanvas() {
   return (

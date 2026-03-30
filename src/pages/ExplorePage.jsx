@@ -1,7 +1,6 @@
-import Card from 'react-bootstrap/Card'
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
+import { Card, Col, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+
 import PageLayout from '../components/PageLayout'
 
 const concepts = [

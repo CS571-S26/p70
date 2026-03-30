@@ -1,4 +1,5 @@
-import Container from 'react-bootstrap/Container'
+import { Container } from 'react-bootstrap'
+
 import AppNavbar from './AppNavbar'
 
 function PageLayout({ title, lead, children, footer }) {

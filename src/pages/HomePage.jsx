@@ -1,9 +1,6 @@
-import Button from 'react-bootstrap/Button'
-import Col from 'react-bootstrap/Col'
-import Card from 'react-bootstrap/Card'
-import ListGroup from 'react-bootstrap/ListGroup'
-import Row from 'react-bootstrap/Row'
+import { Button, Col, Row, Card, ListGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+
 import PageLayout from '../components/PageLayout'
 
 function HomePage() {
