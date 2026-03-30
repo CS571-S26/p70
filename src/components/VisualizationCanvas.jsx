@@ -48,6 +48,11 @@ function VisualizationCanvas() {
             />
           </svg>
         </div>
+
+        <p className="small text-muted mt-3 mb-0">
+          Blue circles and red squares indicate different classes, and the dashed green line
+          represents a sample decision boundary.
+        </p>
       </Card.Body>
     </Card>
   )

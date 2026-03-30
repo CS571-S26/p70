@@ -19,7 +19,7 @@ function AppNavbar() {
 
         <Navbar.Toggle aria-controls="main-nav" />
         <Navbar.Collapse id="main-nav">
-          <Nav className="ms-auto">
+          <Nav className="ms-auto" aria-label="Main navigation links">
             {navItems.map((item) =>
               item.enabled ? (
                 <Nav.Link
@@ -32,8 +32,15 @@ function AppNavbar() {
                   {item.label}
                 </Nav.Link>
               ) : (
-                <Nav.Link key={item.to} disabled aria-disabled="true" title="Planned for a later milestone">
-                  {item.label}
+                <Nav.Link
+                  key={item.to}
+                  as="span"
+                  disabled
+                  aria-disabled="true"
+                  title="Planned for a later milestone"
+                  className="text-muted"
+                >
+                  {item.label} (Soon)
                 </Nav.Link>
               ),
             )}

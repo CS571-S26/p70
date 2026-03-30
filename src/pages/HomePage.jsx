@@ -25,10 +25,20 @@ function HomePage() {
               <Button as={Link} to="/visualizer" variant="primary" size="lg">
                 Open Visualizer
               </Button>
-              <Button as={Link} to="/explore" variant="outline-primary" size="lg" disabled>
+              <Button
+                as={Link}
+                to="/explore"
+                variant="outline-primary"
+                size="lg"
+                disabled
+                aria-describedby="explore-availability"
+              >
                 Explore Concepts
               </Button>
             </div>
+            <p id="explore-availability" className="small text-muted mt-2 mb-0">
+              Explore Concepts will be enabled in a later milestone.
+            </p>
           </Card.Body>
         </Card>
       </section>
