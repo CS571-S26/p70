@@ -6,7 +6,7 @@ const navItems = [
   { to: '/explore', label: 'Explore', enabled: false },
   { to: '/visualizer', label: 'Visualizer', enabled: true },
   { to: '/settings', label: 'Settings', enabled: false },
-  { to: '/about', label: 'About', enabled: false },
+  { to: '/about', label: 'About', enabled: true },
 ]
 
 function AppNavbar() {
