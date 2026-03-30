@@ -36,20 +36,27 @@ Datasets are visualized as scatter plots and can be regenerated instantly.
 
 ### Model Exploration
 
-VisualML includes multiple machine learning models, each presented on its own page with a consistent interface:
+VisualML includes multiple machine learning models. Models are introduced through concept pages and explored interactively. 
+
+Users can:
+- learn concepts in the Explore section
+- read detailed explanations
+- open the Visualizer to experiment with the model
+
+The Visualizer provides:
+
+- A control panel for hyperparameters
+- A dataset visualization
+- A live decision boundary display
+- Training and replay controls
+
+Examples include:
 
 - Logistic Regression
 - Perceptron
 - k-Nearest Neighbors
 - Decision Tree
 - Small Two-Layer Neural Network
-
-Each model page contains:
-
-- A control panel for hyperparameters
-- A dataset visualization
-- A live decision boundary display
-- Training and replay controls
 
 ---
 
@@ -81,16 +88,18 @@ Users can also export and import experiment configurations.
 
 ### Multi-Page Interface
 
-The application includes multiple routed pages:
+The application is structured as a multi-page experience:
 
 - **Home** – introduction and overview
-- **Playground** – interactive experimentation
-- **Models** – explanations and model selection
-- **Gallery** – saved experiments and presets
-- **Wiki / Glossary** – expandable explanations of ML concepts
-- **Settings** – accessibility and UI preferences
+- **Explore** – browse concepts and topics
+- **Concept Detail** – learn a specific concept
+- **Visualizer** – interactive experimentation
+- **Settings** – accessibility and preferences
+- **About** – project description
 
-Navigation is handled through React Router.
+Users follow a guided learning flow:
+
+Explore → Concept Detail → Visualizer
 
 ---
 
@@ -107,6 +116,18 @@ VisualML is designed to follow accessibility best practices:
 
 ---
 
+### Optional Features
+
+Some features may be added later if time allows:
+
+- saving and loading experiments
+- extended concept explanations
+- additional visualization modes
+
+These are not required for the core experience.
+
+---
+
 ## Technology Stack
 
 - **React**
@@ -117,6 +138,20 @@ VisualML is designed to follow accessibility best practices:
 
 The project is entirely client-side and requires no backend server.
 
+### Import Style Convention
+
+Always use named imports from `react-bootstrap`, for example:
+```js
+import { Button, Container, Navbar } from "react-bootstrap";
+```
+
+Do not use per-component imports such as:
+```js
+import Button from "react-bootstrap/Button";
+```
+
+All React-Bootstrap components must be imported using the named import style for consistency.
+
 ---
 
 ## Deployment
@@ -126,5 +161,6 @@ VisualML is designed to be deployed on **GitHub Pages**.
 Build and deploy the project using:
 
 ```bash
-npm install
+npm install # once
 npm run build
+npm run deploy
