@@ -1,15 +1,30 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Card, Col, Row } from 'react-bootstrap'
+import { useSearchParams } from 'react-router-dom'
 
-import ControlPanel from '../components/ControlPanel'
 import PageLayout from '../components/PageLayout'
+import ParameterControls from '../components/ParameterControls'
 import VisualizationCanvas from '../components/VisualizationCanvas'
 
+const VALID_MODELS = ['logistic-regression', 'perceptron', 'knn']
+
 function VisualizerPage() {
+  const [searchParams] = useSearchParams()
+  const requestedModel = searchParams.get('model')
+
   const [datasetSize, setDatasetSize] = useState(80)
   const [noise, setNoise] = useState(0.2)
-  const [selectedModel, setSelectedModel] = useState('logistic-regression')
+  const [randomSeed, setRandomSeed] = useState(42)
+  const [selectedModel, setSelectedModel] = useState(
+    VALID_MODELS.includes(requestedModel) ? requestedModel : 'logistic-regression',
+  )
   const [showOverlay, setShowOverlay] = useState(true)
+
+  useEffect(() => {
+    if (VALID_MODELS.includes(requestedModel)) {
+      setSelectedModel(requestedModel)
+    }
+  }, [requestedModel])
 
   const selectedModelLabel = useMemo(() => {
     const modelNames = {
@@ -50,6 +65,10 @@ function VisualizerPage() {
                     <div className="fw-semibold">{noise.toFixed(2)}</div>
                   </Col>
                   <Col sm={6}>
+                    <Card.Text className="mb-0 text-secondary">Random Seed</Card.Text>
+                    <div className="fw-semibold">{randomSeed}</div>
+                  </Col>
+                  <Col sm={6}>
                     <Card.Text className="mb-0 text-secondary">Overlay</Card.Text>
                     <div className="fw-semibold">{showOverlay ? 'On' : 'Off'}</div>
                   </Col>
@@ -61,18 +80,21 @@ function VisualizerPage() {
 
         <Col lg={4}>
           <div className="ps-lg-2">
-            <ControlPanel
+            <ParameterControls
               datasetSize={datasetSize}
               noise={noise}
+              randomSeed={randomSeed}
               model={selectedModel}
               showOverlay={showOverlay}
               onDatasetSizeChange={setDatasetSize}
               onNoiseChange={setNoise}
+              onRandomSeedChange={setRandomSeed}
               onModelChange={setSelectedModel}
               onShowOverlayChange={setShowOverlay}
               onReset={() => {
                 setDatasetSize(80)
                 setNoise(0.2)
+                setRandomSeed(42)
                 setSelectedModel('logistic-regression')
                 setShowOverlay(true)
               }}

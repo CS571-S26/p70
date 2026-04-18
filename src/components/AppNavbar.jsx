@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 const navItems = [
   { to: '/', label: 'Home', end: true, enabled: true },
-  { to: '/explore', label: 'Explore', enabled: false },
+  { to: '/explore', label: 'Explore', enabled: true },
   { to: '/visualizer', label: 'Visualizer', enabled: true },
   { to: '/settings', label: 'Settings', enabled: false },
   { to: '/about', label: 'About', enabled: true },

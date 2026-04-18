@@ -1,40 +1,40 @@
 import { Card, Col, Row } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 
+import ConceptCard from '../components/ConceptCard'
 import PageLayout from '../components/PageLayout'
-
-const concepts = [
-  {
-    id: 'logistic-regression',
-    title: 'Logistic Regression',
-    difficulty: 'Beginner',
-    description: 'See how a linear boundary separates classes and how gradient updates refine it.',
-  },
-  {
-    id: 'knn',
-    title: 'k-Nearest Neighbors',
-    difficulty: 'Beginner',
-    description: 'Compare local neighborhood voting decisions under different k values.',
-  },
-]
+import { concepts } from '../data/concepts'
 
 function ExplorePage() {
   return (
     <PageLayout
       title="Explore Concepts"
-      lead="Browse key topics before opening a model in the visualizer."
+      lead="Browse foundational machine learning concepts, compare their goals, and then continue learning in the visualizer."
     >
+      <section className="mb-4" aria-labelledby="explore-intro-heading">
+        <Card className="border-0 bg-light">
+          <Card.Body>
+            <h2 id="explore-intro-heading" className="h5 mb-2">
+              Start With Core Classification Models
+            </h2>
+            <p className="mb-0 text-secondary">
+              Each card introduces a model you can experiment with. Use Learn More to read the
+              concept and continue directly in the Visualizer.
+            </p>
+          </Card.Body>
+        </Card>
+      </section>
+
       <Row className="g-4">
         {concepts.map((concept) => (
-          <Col md={6} key={concept.id}>
-            <Card className="h-100">
-              <Card.Body>
-                <Card.Title as="h2" className="h5">{concept.title}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">Difficulty: {concept.difficulty}</Card.Subtitle>
-                <Card.Text>{concept.description}</Card.Text>
-                <Card.Link as={Link} to="/visualizer">Open in Visualizer</Card.Link>
-              </Card.Body>
-            </Card>
+          <Col md={6} lg={4} key={concept.id}>
+            <ConceptCard
+              title={concept.title}
+              description={concept.description}
+              difficulty={concept.difficulty}
+              status="Detail page available"
+              learnMoreTo={`/explore/${concept.id}`}
+              learnMoreLabel="Learn More"
+            />
           </Col>
         ))}
       </Row>

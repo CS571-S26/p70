@@ -162,5 +162,6 @@ Build and deploy the project using:
 
 ```bash
 npm install # once
+npm run dev # developer
 npm run build
 npm run deploy
