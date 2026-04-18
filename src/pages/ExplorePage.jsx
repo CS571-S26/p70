@@ -14,11 +14,11 @@ function ExplorePage() {
         <Card className="border-0 bg-light">
           <Card.Body>
             <h2 id="explore-intro-heading" className="h5 mb-2">
-              Start With Core Classification Models
+              Models and Techniques
             </h2>
             <p className="mb-0 text-secondary">
-              Each card introduces a model you can experiment with. Use Learn More to read the
-              concept and continue directly in the Visualizer.
+              Each card introduces a machine learning concept you can experiment with. Use Learn
+              More to read the concept and continue directly in the Visualizer.
             </p>
           </Card.Body>
         </Card>

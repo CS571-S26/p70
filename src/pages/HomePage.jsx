@@ -62,7 +62,7 @@ function HomePage() {
               <Card.Body>
                 <Card.Title as="h3" className="h6">Switch Model Types</Card.Title>
                 <Card.Text className="mb-0 text-secondary">
-                  Compare model choices and observe how each one frames classification behavior.
+                  Compare model choices and observe different learning behaviors and geometric views.
                 </Card.Text>
               </Card.Body>
             </Card>

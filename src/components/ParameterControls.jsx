@@ -38,7 +38,7 @@ function RangeControl({
 function ParameterControls({
   model = 'logistic-regression',
   datasetSize = 80,
-  noise = 0.2,
+  noise = 0.4,
   randomSeed = 42,
   modelOptions = [
     { value: 'logistic-regression', label: 'Logistic Regression' },
@@ -53,20 +53,20 @@ function ParameterControls({
   projectionAngle = 35,
   showProjections = true,
   showPrincipalAxis = true,
-  onDatasetSizeChange = () => {},
-  onNoiseChange = () => {},
-  onRandomSeedChange = () => {},
-  onModelChange = () => {},
-  onShowOverlayChange = () => {},
-  onKValueChange = () => {},
-  onDistanceMetricChange = () => {},
-  onShowNeighborsChange = () => {},
-  onShowConfidenceChange = () => {},
-  onProjectionAngleChange = () => {},
-  onShowProjectionsChange = () => {},
-  onShowPrincipalAxisChange = () => {},
-  onGenerate = () => {},
-  onReset = () => {},
+  onDatasetSizeChange = () => { },
+  onNoiseChange = () => { },
+  onRandomSeedChange = () => { },
+  onModelChange = () => { },
+  onShowOverlayChange = () => { },
+  onKValueChange = () => { },
+  onDistanceMetricChange = () => { },
+  onShowNeighborsChange = () => { },
+  onShowConfidenceChange = () => { },
+  onProjectionAngleChange = () => { },
+  onShowProjectionsChange = () => { },
+  onShowPrincipalAxisChange = () => { },
+  onRandomizeQueryPoint = () => { },
+  onReset = () => { },
 }) {
   return (
     <Card className="shadow-sm h-100">
@@ -75,7 +75,8 @@ function ParameterControls({
           Parameter Controls
         </Card.Title>
         <Card.Text className="text-muted mb-4">
-          Controls update based on the selected model so you only see relevant settings.
+          Controls update based on the selected model so you only see relevant settings. Dataset
+          visuals update automatically as parameters change.
         </Card.Text>
 
         <Form>
@@ -182,6 +183,10 @@ function ParameterControls({
                   onChange={(event) => onShowConfidenceChange(event.target.checked)}
                 />
               </Form.Group>
+
+              <Button type="button" variant="outline-primary" className="w-100 mb-4" onClick={onRandomizeQueryPoint}>
+                Randomize Query Point
+              </Button>
             </>
           ) : null}
 
@@ -190,7 +195,7 @@ function ParameterControls({
               <RangeControl
                 controlId="projection-angle"
                 label="Projection Axis Angle"
-                valueLabel={`${projectionAngle}deg`}
+                valueLabel={`${projectionAngle}°`}
                 min={0}
                 max={180}
                 step={1}
@@ -219,14 +224,9 @@ function ParameterControls({
             </>
           ) : null}
 
-          <div className="d-grid gap-2">
-            <Button type="button" variant="primary" onClick={onGenerate}>
-              Generate Dataset
-            </Button>
-            <Button type="button" variant="outline-secondary" onClick={onReset}>
-              Reset Controls
-            </Button>
-          </div>
+          <Button type="button" variant="outline-secondary" className="w-100" onClick={onReset}>
+            Reset Controls
+          </Button>
         </Form>
       </Card.Body>
     </Card>

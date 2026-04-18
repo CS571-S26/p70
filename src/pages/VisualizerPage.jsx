@@ -9,7 +9,7 @@ import { generatePointCloudDataset, generateTwoClassDataset } from '../utils/dat
 
 const VALID_MODELS = ['logistic-regression', 'knn', 'pca']
 const DEFAULT_DATASET_SIZE = 80
-const DEFAULT_NOISE = 0.2
+const DEFAULT_NOISE = 0.4
 const DEFAULT_RANDOM_SEED = 42
 const DEFAULT_K = 5
 const DEFAULT_DISTANCE_METRIC = 'euclidean'
@@ -111,6 +111,7 @@ function VisualizerPage() {
   const [projectionAngle, setProjectionAngle] = useState(DEFAULT_PROJECTION_ANGLE)
   const [showProjections, setShowProjections] = useState(true)
   const [showPrincipalAxis, setShowPrincipalAxis] = useState(true)
+  const [queryPointOverride, setQueryPointOverride] = useState(null)
 
   const [dataset, setDataset] = useState(() =>
     generateTwoClassDataset({
@@ -201,10 +202,11 @@ function VisualizerPage() {
     }
 
     const angle = ((randomSeed * 47) % 360) * (Math.PI / 180)
-    const queryPoint = {
+    const fallbackQueryPoint = {
       x: clamp(Math.cos(angle) * (0.75 + noise * 0.55), -2.5, 2.5),
       y: clamp(Math.sin(angle * 1.33) * (0.65 + noise * 0.65), -2.5, 2.5),
     }
+    const queryPoint = queryPointOverride ?? fallbackQueryPoint
 
     const ranked = points
       .map((point) => ({
@@ -247,7 +249,7 @@ function VisualizerPage() {
       showNeighbors,
       showConfidence,
     }
-  }, [dataset.points, distanceMetric, kValue, noise, randomSeed, selectedModel, showConfidence, showNeighbors])
+  }, [dataset.points, distanceMetric, kValue, noise, queryPointOverride, randomSeed, selectedModel, showConfidence, showNeighbors])
 
   const pcaState = useMemo(() => {
     if (selectedModel !== 'pca') {
@@ -296,10 +298,10 @@ function VisualizerPage() {
   return (
     <PageLayout
       title="Interactive Visualizer"
-      lead="Choose a model to see its own controls and visualization behavior."
+      lead="Explore machine learning concepts through model-specific controls, geometric views, and data interactions."
     >
       <Row className="g-4 align-items-start">
-        <Col lg={8}>
+        <Col lg={9}>
           <div className="pe-lg-2">
             <VisualizationCanvas
               model={selectedModel}
@@ -362,6 +364,12 @@ function VisualizerPage() {
                         {knnState.distanceMetric === 'manhattan' ? 'Manhattan' : 'Euclidean'}
                       </div>
                     </Col>
+                    <Col sm={6}>
+                      <Card.Text className="mb-0 text-secondary">Query Point</Card.Text>
+                      <div className="fw-semibold">
+                        ({knnState.queryPoint.x.toFixed(2)}, {knnState.queryPoint.y.toFixed(2)})
+                      </div>
+                    </Col>
                     {showConfidence ? (
                       <Col sm={6}>
                         <Card.Text className="mb-0 text-secondary">Confidence</Card.Text>
@@ -406,7 +414,7 @@ function VisualizerPage() {
           </div>
         </Col>
 
-        <Col lg={4}>
+        <Col lg={3}>
           <div className="ps-lg-2">
             <ParameterControls
               model={selectedModel}
@@ -433,7 +441,12 @@ function VisualizerPage() {
               onProjectionAngleChange={setProjectionAngle}
               onShowProjectionsChange={setShowProjections}
               onShowPrincipalAxisChange={setShowPrincipalAxis}
-              onGenerate={regenerateDataset}
+              onRandomizeQueryPoint={() => {
+                setQueryPointOverride({
+                  x: clamp(-2.5 + Math.random() * 5, -2.5, 2.5),
+                  y: clamp(-2.5 + Math.random() * 5, -2.5, 2.5),
+                })
+              }}
               onReset={() => {
                 setDatasetSize(DEFAULT_DATASET_SIZE)
                 setNoise(DEFAULT_NOISE)
@@ -446,6 +459,7 @@ function VisualizerPage() {
                 setShowProjections(true)
                 setShowPrincipalAxis(true)
                 setShowOverlay(true)
+                setQueryPointOverride(null)
 
                 if (selectedModel === 'pca') {
                   setDataset(
