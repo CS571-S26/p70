@@ -16,20 +16,20 @@ const concepts = [
       'If study-time and attendance are inputs, logistic regression can estimate whether a student is likely to pass or fail based on a probability threshold.',
   },
   {
-    id: 'perceptron',
-    modelKey: 'perceptron',
-    title: 'Perceptron',
+    id: 'pca',
+    modelKey: 'pca',
+    title: 'Principal Component Analysis (PCA)',
     difficulty: 'Beginner',
     description:
-      'Understand step-based updates and how the perceptron adjusts weights when points are classified incorrectly.',
+      'See how data can be projected onto a direction that captures the most variance.',
     overview:
-      'The perceptron is one of the earliest binary classifiers and builds a linear decision boundary through iterative updates.',
+      'PCA is a dimensionality reduction method that finds directions capturing the largest variation in a dataset.',
     explanation:
-      'For each training example, the perceptron predicts a class using the sign of a weighted sum. If the prediction is wrong, it nudges the weights and bias in the direction that would make that example more likely to be classified correctly next time.',
+      'PCA rotates the coordinate system to align with the data distribution. The first principal component points along the direction where projected points spread out the most, making it useful for compression and structure discovery.',
     howItWorks:
-      'The algorithm loops through data repeatedly. Correct predictions leave weights unchanged; incorrect predictions trigger updates. Over time, the boundary rotates and shifts to reduce mistakes on linearly separable datasets.',
+      'Each point is projected onto the principal axis. The axis that maximizes projection variance becomes the main component, which preserves the strongest trend in the data while reducing dimensionality.',
     example:
-      'For a spam detector with simple word-count features, the perceptron strengthens weights for words common in spam and weakens weights for words common in non-spam.',
+      'For data with correlated measurements, PCA can summarize the dominant pattern with one direction while still keeping most of the variation.',
   },
   {
     id: 'knn',

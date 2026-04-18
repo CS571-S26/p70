@@ -53,7 +53,7 @@ The Visualizer provides:
 Examples include:
 
 - Logistic Regression
-- Perceptron
+- PCA
 - k-Nearest Neighbors
 - Decision Tree
 - Small Two-Layer Neural Network
