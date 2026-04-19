@@ -1,4 +1,4 @@
-import { Badge, Button, Card, Col, ListGroup, Row } from 'react-bootstrap'
+import { Button, Card, Col, ListGroup, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 import PageLayout from '../components/PageLayout'
@@ -12,9 +12,6 @@ function HomePage() {
       <section className="mb-4 mb-md-5">
         <Card className="border-0 shadow-sm bg-white">
           <Card.Body className="p-4 p-md-5">
-            <Badge bg="primary" className="mb-3">
-              Phase B
-            </Badge>
             <h2 className="h3 mb-3">Learn ML by Experimenting, Not Memorizing</h2>
             <p className="mb-0 text-secondary">
               VisualML helps you move from abstract definitions to intuition by adjusting dataset and
@@ -25,20 +22,10 @@ function HomePage() {
               <Button as={Link} to="/visualizer" variant="primary" size="lg">
                 Open Visualizer
               </Button>
-              <Button
-                as={Link}
-                to="/explore"
-                variant="outline-primary"
-                size="lg"
-                disabled
-                aria-describedby="explore-availability"
-              >
+              <Button as={Link} to="/explore" variant="outline-primary" size="lg">
                 Explore Concepts
               </Button>
             </div>
-            <p id="explore-availability" className="small text-muted mt-2 mb-0">
-              Explore Concepts will be enabled in a later milestone.
-            </p>
           </Card.Body>
         </Card>
       </section>
