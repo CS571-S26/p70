@@ -5,7 +5,7 @@ const navItems = [
   { to: '/', label: 'Home', end: true, enabled: true },
   { to: '/explore', label: 'Explore', enabled: true },
   { to: '/visualizer', label: 'Visualizer', enabled: true },
-  { to: '/settings', label: 'Settings', enabled: false },
+  { to: '/settings', label: 'Settings', enabled: true },
   { to: '/about', label: 'About', enabled: true },
 ]
 
