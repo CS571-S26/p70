@@ -1,10 +1,11 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Card, Col, Row } from 'react-bootstrap'
 import { useSearchParams } from 'react-router-dom'
 
 import PageLayout from '../components/PageLayout'
 import ParameterControls from '../components/ParameterControls'
 import VisualizationCanvas from '../components/VisualizationCanvas'
+import { useSettings } from '../context/SettingsContext'
 import { generatePointCloudDataset, generateTwoClassDataset } from '../utils/datasetGenerator'
 
 const VALID_MODELS = ['logistic-regression', 'knn', 'pca']
@@ -94,15 +95,27 @@ function distance(point, queryPoint, metric) {
 }
 
 function VisualizerPage() {
+  const { settings } = useSettings()
   const [searchParams] = useSearchParams()
   const requestedModel = searchParams.get('model')
 
-  const [datasetSize, setDatasetSize] = useState(DEFAULT_DATASET_SIZE)
-  const [noise, setNoise] = useState(DEFAULT_NOISE)
+  const initialSettingsRef = useRef(null)
+  if (initialSettingsRef.current === null) {
+    const initialModel = VALID_MODELS.includes(requestedModel)
+      ? requestedModel
+      : (VALID_MODELS.includes(settings.defaultModel) ? settings.defaultModel : 'logistic-regression')
+
+    initialSettingsRef.current = {
+      model: initialModel,
+      datasetSize: settings.defaultDatasetSize ?? DEFAULT_DATASET_SIZE,
+      noise: settings.defaultNoise ?? DEFAULT_NOISE,
+    }
+  }
+
+  const [datasetSize, setDatasetSize] = useState(() => initialSettingsRef.current.datasetSize)
+  const [noise, setNoise] = useState(() => initialSettingsRef.current.noise)
   const [randomSeed, setRandomSeed] = useState(DEFAULT_RANDOM_SEED)
-  const [selectedModel, setSelectedModel] = useState(
-    VALID_MODELS.includes(requestedModel) ? requestedModel : 'logistic-regression',
-  )
+  const [selectedModel, setSelectedModel] = useState(() => initialSettingsRef.current.model)
   const [showOverlay, setShowOverlay] = useState(true)
   const [kValue, setKValue] = useState(DEFAULT_K)
   const [distanceMetric, setDistanceMetric] = useState(DEFAULT_DISTANCE_METRIC)
@@ -113,19 +126,21 @@ function VisualizerPage() {
   const [showPrincipalAxis, setShowPrincipalAxis] = useState(true)
   const [queryPointOverride, setQueryPointOverride] = useState(null)
 
-  const [dataset, setDataset] = useState(() =>
-    generateTwoClassDataset({
-      size: DEFAULT_DATASET_SIZE,
-      noise: DEFAULT_NOISE,
-      seed: DEFAULT_RANDOM_SEED,
-    }),
-  )
-
-  useEffect(() => {
-    if (VALID_MODELS.includes(requestedModel)) {
-      setSelectedModel(requestedModel)
+  const [dataset, setDataset] = useState(() => {
+    if (initialSettingsRef.current.model === 'pca') {
+      return generatePointCloudDataset({
+        size: initialSettingsRef.current.datasetSize,
+        noise: initialSettingsRef.current.noise,
+        seed: DEFAULT_RANDOM_SEED,
+      })
     }
-  }, [requestedModel])
+
+    return generateTwoClassDataset({
+      size: initialSettingsRef.current.datasetSize,
+      noise: initialSettingsRef.current.noise,
+      seed: DEFAULT_RANDOM_SEED,
+    })
+  })
 
   const regenerateDataset = useCallback(() => {
     if (selectedModel === 'pca') {
@@ -448,8 +463,13 @@ function VisualizerPage() {
                 })
               }}
               onReset={() => {
-                setDatasetSize(DEFAULT_DATASET_SIZE)
-                setNoise(DEFAULT_NOISE)
+                const resetModel = initialSettingsRef.current.model
+                const resetDatasetSize = initialSettingsRef.current.datasetSize
+                const resetNoise = initialSettingsRef.current.noise
+
+                setSelectedModel(resetModel)
+                setDatasetSize(resetDatasetSize)
+                setNoise(resetNoise)
                 setRandomSeed(DEFAULT_RANDOM_SEED)
                 setKValue(DEFAULT_K)
                 setDistanceMetric(DEFAULT_DISTANCE_METRIC)
@@ -461,19 +481,19 @@ function VisualizerPage() {
                 setShowOverlay(true)
                 setQueryPointOverride(null)
 
-                if (selectedModel === 'pca') {
+                if (resetModel === 'pca') {
                   setDataset(
                     generatePointCloudDataset({
-                      size: DEFAULT_DATASET_SIZE,
-                      noise: DEFAULT_NOISE,
+                      size: resetDatasetSize,
+                      noise: resetNoise,
                       seed: DEFAULT_RANDOM_SEED,
                     }),
                   )
                 } else {
                   setDataset(
                     generateTwoClassDataset({
-                      size: DEFAULT_DATASET_SIZE,
-                      noise: DEFAULT_NOISE,
+                      size: resetDatasetSize,
+                      noise: resetNoise,
                       seed: DEFAULT_RANDOM_SEED,
                     }),
                   )

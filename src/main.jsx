@@ -6,11 +6,14 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css'
 
 import App from './App.jsx'
+import { SettingsProvider } from './context/SettingsContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <HashRouter>
-      <App />
-    </HashRouter>
+    <SettingsProvider>
+      <HashRouter>
+        <App />
+      </HashRouter>
+    </SettingsProvider>
   </StrictMode>,
 )
