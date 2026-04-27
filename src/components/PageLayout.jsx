@@ -1,5 +1,6 @@
 import { Container } from 'react-bootstrap'
 
+import AppFooter from './AppFooter'
 import AppNavbar from './AppNavbar'
 
 function PageLayout({ title, lead, children, footer, headerTop }) {
@@ -17,13 +18,7 @@ function PageLayout({ title, lead, children, footer, headerTop }) {
         </Container>
       </main>
 
-      {footer ? (
-        <footer className="border-top">
-          <Container className="py-3 text-muted small">{footer}</Container>
-        </footer>
-      ) : (
-        <div className="pb-3" aria-hidden="true" />
-      )}
+      <AppFooter note={footer} />
     </div>
   )
 }
