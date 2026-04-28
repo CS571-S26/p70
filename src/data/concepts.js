@@ -2,6 +2,9 @@ const concepts = [
   {
     id: 'logistic-regression',
     modelKey: 'logistic-regression',
+    category: 'Machine Learning',
+    difficulty: 'Beginner',
+    previewAlt: 'Scatter plot with a linear decision boundary separating two classes',
     title: 'Logistic Regression',
     description:
       'Learn how a linear decision boundary separates classes and why probability outputs are useful for classification.',
@@ -17,6 +20,9 @@ const concepts = [
   {
     id: 'pca',
     modelKey: 'pca',
+    category: 'Mathematics',
+    difficulty: 'Intermediate',
+    previewAlt: 'Principal component axes showing variance direction in a point cloud',
     title: 'Principal Component Analysis (PCA)',
     description:
       'See how data can be projected onto a direction that captures the most variance.',
@@ -32,6 +38,9 @@ const concepts = [
   {
     id: 'knn',
     modelKey: 'knn',
+    category: 'Algorithms',
+    difficulty: 'Beginner',
+    previewAlt: 'Nearest-neighbor classification regions around labeled sample points',
     title: 'k-Nearest Neighbors',
     description:
       'Explore how local neighborhood voting changes as k increases and how decision boundaries become smoother.',

@@ -291,7 +291,7 @@ function VisualizationCanvas({
     footer = `Query uses k=${knnState?.kValue ?? 0} with ${knnState?.distanceMetric ?? 'euclidean'} distance. Class A: blue outlined circles (${classACount}). Class B: red outlined circles with thicker stroke (${classBCount}).`
   } else if (model === 'pca') {
     description = 'PCA projection view showing principal-axis geometry and projected points.'
-    footer = `Projected variance: ${(pcaState?.variance ?? 0).toFixed(3)}.`
+    footer = `Point cloud: circles. Projected points: small squares. Principal axis: bold line. Projected variance: ${(pcaState?.variance ?? 0).toFixed(3)}.`
   }
 
   return (

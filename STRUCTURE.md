@@ -83,7 +83,7 @@
 
 ---
 
-## 4. Settings / Preferences Page
+## 4. Settings Page
 
 ### Purpose
 Allows users to customize their experience globally.
@@ -91,7 +91,7 @@ Allows users to customize their experience globally.
 ### Sections
 - Appearance
   - Light / Dark mode
-  - Color theme (optional)
+  - High contrast mode
 
 - Visualization Preferences
   - Default dataset size
@@ -127,7 +127,7 @@ Allows users to customize their experience globally.
 
 ## 6. Footer (Global)
 
-- Quick links (Home, Explore, Visualizer)
+- Quick links (Home, Settings, About)
 - Accessibility note
 - Copyright
 
