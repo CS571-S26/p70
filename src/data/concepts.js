@@ -3,7 +3,6 @@ const concepts = [
     id: 'logistic-regression',
     modelKey: 'logistic-regression',
     title: 'Logistic Regression',
-    difficulty: 'Beginner',
     description:
       'Learn how a linear decision boundary separates classes and why probability outputs are useful for classification.',
     overview:
@@ -19,7 +18,6 @@ const concepts = [
     id: 'pca',
     modelKey: 'pca',
     title: 'Principal Component Analysis (PCA)',
-    difficulty: 'Beginner',
     description:
       'See how data can be projected onto a direction that captures the most variance.',
     overview:
@@ -35,7 +33,6 @@ const concepts = [
     id: 'knn',
     modelKey: 'knn',
     title: 'k-Nearest Neighbors',
-    difficulty: 'Beginner',
     description:
       'Explore how local neighborhood voting changes as k increases and how decision boundaries become smoother.',
     overview:

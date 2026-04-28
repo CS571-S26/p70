@@ -30,8 +30,6 @@ function ExplorePage() {
             <ConceptCard
               title={concept.title}
               description={concept.description}
-              difficulty={concept.difficulty}
-              status="Detail page available"
               learnMoreTo={`/explore/${concept.id}`}
               learnMoreLabel="Learn More"
             />
