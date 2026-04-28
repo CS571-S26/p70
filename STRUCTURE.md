@@ -1,144 +1,168 @@
 # Website Structure Overview (User Perspective)
 
 ## Global Navigation (Visible on All Pages)
+The site uses a shared page layout with a consistent top navigation bar.
+
+Navbar links:
 - Home
 - Explore
 - Visualizer
 - Settings
 - About
-- Search (optional utility)
+
+Navigation behavior:
+- The current page is shown with an active state in the navbar.
+- Navigation is keyboard accessible.
+
+---
+
+## Routes
+
+| Route | User-Facing Page | Purpose |
+|---|---|---|
+| `/` | Home | Introduction and entry points |
+| `/explore` | Explore | Browse concepts |
+| `/explore/:id` | Concept Detail | Read model-specific explanations |
+| `/visualizer` | Visualizer | Interactive model and dataset exploration |
+| `/settings` | Settings | Preferences and accessibility options |
+| `/about` | About | Project purpose, features, and course context |
+| `*` | Fallback redirect | Redirects unknown routes to Home |
+
+Notes:
+- Routing is client-side.
+- The app uses hash-based routing for GitHub Pages compatibility.
 
 ---
 
 ## 1. Home Page
 
-### Sections
-- Hero Introduction
-  - Website title
-  - Short description
-  - Call-to-action (e.g., "Start Exploring", "Try Visualizer")
-
-- Featured Content
-  - Highlighted concept
-  - Featured visualization
-
-- Quick Access
-  - Explore Concepts
+### What Users See
+- A hero introduction to VisualML.
+- A short project overview explaining interactive ML learning.
+- Clear call-to-action buttons to:
   - Open Visualizer
-
-- Latest Updates (optional)
-  - New features or content
+  - Go to Explore
+- Summary cards highlighting what users can do (model comparison, noise effects, explanation panel guidance).
 
 ---
 
 ## 2. Explore Page
 
-### Sections
-- Topic Categories (optional filter)
+### What Users Can Do
+- Browse concept cards for implemented topics.
+- Filter cards by category:
   - Machine Learning
   - Mathematics
   - Algorithms
-
-- Concept List (Main Content)
-  - Title
-  - Short description
-  - Difficulty level
+- See concept metadata on each card:
+  - Difficulty label
+  - Category label
   - Preview image
-  - "Learn More" button
+  - Short description
+- Open concept details through the Learn More action.
 
 ---
 
-### Subpage: Concept Detail
+## 3. Concept Detail Pages (`/explore/:id`)
 
-- Title + Overview
-- Explanation (clear, concise)
-- Visual examples (static or simple)
-- Link to open in Visualizer
-- Related concepts (optional)
+Implemented concept detail pages:
+- Logistic Regression
+- k-Nearest Neighbors (kNN)
+- Principal Component Analysis (PCA)
 
----
-
-## 3. Visualizer Page (Core Interactive Page)
-
-### Sections
-- Visualization Selector
-  - Choose concept (e.g., Linear Regression, KNN)
-
-- Interactive Visualization Area
-  - Graph / canvas display
-  - Real-time updates
-
-- Controls Panel
-  - Sliders (e.g., parameters)
-  - Dropdowns (e.g., dataset type)
-  - Toggles (e.g., show boundary)
-
-- Explanation Panel
-  - What is happening
-  - How parameters affect results
-
-- Actions
-  - Reset
-  - Randomize data (optional)
+Each concept detail page includes:
+- Overview and explanation sections
+- Visual/image example
+- Source attribution for external reference images
+- A direct button to open the selected concept in the Visualizer
 
 ---
 
-## 4. Settings Page
+## 4. Visualizer Page (Core Interactive Page)
 
-### Purpose
-Allows users to customize their experience globally.
+### What Users Can Control
+- Model selector (Logistic Regression, kNN, PCA)
+- Dataset parameters:
+  - Dataset size
+  - Noise
+  - Random seed
+- Model-specific controls:
+  - Logistic Regression: decision boundary toggle
+  - kNN: k value, distance metric, neighbor/confidence toggles
+  - PCA: projection angle and projection/axis toggles
 
-### Sections
-- Appearance
-  - Light / Dark mode
+### What Users See
+- A live visualization area that updates when controls change
+- Reset controls action
+- Randomize query point action (kNN)
+- A model explanation/summary panel with current state details
+- Text summary support so the visualization is interpretable without relying only on color
+
+---
+
+## 5. Settings Page
+
+### Available Preferences
+- Appearance:
+  - Light / Dark theme
+- Accessibility:
   - High contrast mode
-
-- Visualization Preferences
+  - Reduced motion mode
+- Visualizer defaults:
+  - Default model
   - Default dataset size
-  - Animation speed
-  - Show/hide helper overlays
+  - Default noise
+- Reset to defaults action
 
-- Accessibility
-  - Text size
-  - High contrast mode
-
-- Reset Settings
-  - Restore defaults
+Persistence:
+- Settings are saved in `localStorage`.
 
 ---
 
-## 5. About Page
+## 6. About Page
 
-### Sections
-- Project Purpose
-  - What this website is for
-
-- Key Features
-  - Interactive visualization
-  - Concept exploration
-
-- Creator / Author Info
-  - Name / course context
-
-- Feedback (optional)
-  - Simple contact or message form
+### Content
+- Project purpose and motivation
+- Key features and interaction highlights
+- How to use the site at a high level
+- Course context and project scope
 
 ---
 
-## 6. Footer (Global)
+## 7. Footer (Global)
 
-- Quick links (Home, Settings, About)
-- Accessibility note
-- Copyright
+The footer is visible across pages and includes:
+- Quick links:
+  - Home
+  - Explore
+  - Visualizer
+- Project identity text
+- Accessibility note (points users to Settings)
 
 ---
 
 ## Example User Flow
 
-1. User lands on Home
-2. Clicks "Explore"
-3. Selects a concept
-4. Reads explanation
-5. Clicks "Open in Visualizer"
-6. Adjusts parameters interactively
-7. Changes preferences in Settings (e.g., dark mode)
+1. User lands on Home.
+2. User opens Explore.
+3. User selects a concept card.
+4. User reads the Concept Detail page.
+5. User opens that concept in the Visualizer.
+6. User adjusts parameters and observes live updates.
+7. User updates preferences in Settings.
+8. User visits About for project context.
+
+Flow summary:
+Home → Explore → Concept Detail → Visualizer → Settings/About
+
+---
+
+## Final Requirement Notes
+
+This final version of VisualML satisfies core CS571 expectations by providing:
+- At least 3 fully developed pages (Home, Explore, Visualizer, plus Settings/About)
+- At least 14 meaningful React components
+- Meaningful user interactivity in the Visualizer
+- Accessibility support (labels, keyboard navigation, focus visibility, text alternatives)
+- Consistent React-Bootstrap UI patterns
+- GitHub Pages-compatible client-side routing and deployment
