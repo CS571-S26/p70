@@ -1,6 +1,9 @@
 import { Button, Card, Col, Row, Table } from 'react-bootstrap'
 import { Link, useParams } from 'react-router-dom'
 
+import knnImage from '../assets/images/knn.webp'
+import logRegImage from '../assets/images/log_reg.webp'
+import pcaImage from '../assets/images/pca.png'
 import PageLayout from '../components/PageLayout'
 import { getConceptById } from '../data/concepts'
 
@@ -98,17 +101,28 @@ function ConceptDetailPage() {
                     <h2 id="visual-example-heading" className="h5 mb-3">
                       Visual Example
                     </h2>
-                    <figure className="mb-0">
-                      <div
-                        className="border rounded p-4 bg-light text-center"
-                        role="img"
-                        aria-label="Static illustration of logistic regression separating two classes with a linear decision boundary."
-                      >
-                        Placeholder image area for logistic regression visual example
-                      </div>
-                      <figcaption className="mt-3 text-secondary">
-                        A logistic regression model often appears as a line separating two groups of points in a 2D visualization. Points farther from the boundary usually correspond to higher confidence predictions.
+                    <figure className="text-center mb-0">
+                      <img
+                        src={logRegImage}
+                        alt="Logistic regression sigmoid curve showing probability transition between two classes"
+                        className="img-fluid rounded border"
+                      />
+                      <figcaption className="text-muted small mt-2">
+                        The sigmoid curve maps input values to probabilities, separating two classes with a smooth transition.
                       </figcaption>
+                      <div className="text-muted small">
+                        Source:{' '}
+                        <a
+                          href="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*2IAHsCEZaZtZ9ybziYPDEQ.jpeg"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Medium Illustration
+                        </a>
+                      </div>
+                      <p className="mt-3 mb-0 text-secondary">
+                        A logistic regression model often appears as a line separating two groups of points in a 2D visualization. Points farther from the boundary usually correspond to higher confidence predictions.
+                      </p>
                     </figure>
                   </Card.Body>
                 </Card>
@@ -303,17 +317,28 @@ function ConceptDetailPage() {
                     <h2 id="visual-example-heading" className="h5 mb-3">
                       Visual Example
                     </h2>
-                    <figure className="mb-0">
-                      <div
-                        className="border rounded p-4 bg-light text-center"
-                        role="img"
-                        aria-label="k-nearest neighbors classification showing a test point and nearby labeled data points."
-                      >
-                        Placeholder image area for k-nearest neighbors visual example
-                      </div>
-                      <figcaption className="mt-3 text-secondary">
-                        The predicted class is determined by the majority class among the nearest neighbors.
+                    <figure className="text-center mb-0">
+                      <img
+                        src={knnImage}
+                        alt="k-nearest neighbors classification showing how different values of k affect the predicted class of a test point"
+                        className="img-fluid rounded border"
+                      />
+                      <figcaption className="text-muted small mt-2">
+                        kNN classifies a point based on its nearest neighbors. The choice of k affects the decision outcome and model behavior.
                       </figcaption>
+                      <div className="text-muted small">
+                        Source:{' '}
+                        <a
+                          href="https://towardsdatascience.com/wp-content/uploads/2021/11/13SwcOCUyVdGauhHrHvOaLA.png"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Towards Data Science
+                        </a>
+                      </div>
+                      <p className="mt-3 mb-0 text-secondary">
+                        The predicted class is determined by the majority class among the nearest neighbors.
+                      </p>
                     </figure>
                   </Card.Body>
                 </Card>
@@ -484,17 +509,28 @@ function ConceptDetailPage() {
                     <h2 id="visual-example-heading" className="h5 mb-3">
                       Visual Example
                     </h2>
-                    <figure className="mb-0">
-                      <div
-                        className="border rounded p-4 bg-light text-center"
-                        role="img"
-                        aria-label="PCA projection showing data points and the principal component axis."
-                      >
-                        Placeholder image area for PCA visual example
-                      </div>
-                      <figcaption className="mt-3 text-secondary">
-                        The principal component captures the direction of maximum variance in the data.
+                    <figure className="text-center mb-0">
+                      <img
+                        src={pcaImage}
+                        alt="Principal Component Analysis projecting high-dimensional data onto principal components PC1 and PC2"
+                        className="img-fluid rounded border"
+                      />
+                      <figcaption className="text-muted small mt-2">
+                        PCA transforms data from the original feature space into a new coordinate system defined by principal components that capture the most variance.
                       </figcaption>
+                      <div className="text-muted small">
+                        Source:{' '}
+                        <a
+                          href="http://www.nlpca.org/fig_pca_principal_component_analysis.png"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          NLPCA.org
+                        </a>
+                      </div>
+                      <p className="mt-3 mb-0 text-secondary">
+                        The principal component captures the direction of maximum variance in the data.
+                      </p>
                     </figure>
                   </Card.Body>
                 </Card>
